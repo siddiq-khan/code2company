@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>C2C — Code To Company</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- EmailJS — sends emails directly from browser, no backend needed -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    // ── HOW TO SET UP EMAILJS (one-time, 5 minutes) ────────────────
+    // 1. Sign up free → https://www.emailjs.com
+    // 2. Add Email Service → choose Gmail → copy the SERVICE ID
+    // 3. Create Email Template → use these variables in the template body:
+    //      {{from_name}}  {{from_email}}  {{phone}}  {{message}}
+    //    Copy the TEMPLATE ID
+    // 4. Account → API Keys → copy your PUBLIC KEY
+    // 5. Paste all three values below ↓
+    // ───────────────────────────────────────────────────────────────
+    (function () {
+      emailjs.init({ publicKey: 'LbTMBQgyeMhGCTlo8' }); // 🔑 replace this
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAV
+  ============================================================ -->
+  <nav id="navbar">
+    <div class="nav-logo">C<span>2</span>C</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#stats">Stats</a></li>
+      <li><a href="#works">Works</a></li>
+      <li><a href="#contact" class="nav-cta">Get In Touch</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       SECTION 1 — HERO
+       Sticky viewport; JS reads scroll progress to morph C2C → Code To Company
+       City skyline SVG parallax layers respond to scroll
+  ============================================================ -->
+  <section id="hero" aria-label="Hero">
+    <div class="hero-sticky">
+
+      <!-- ── Decorative rings (behind everything) ── -->
+      <svg class="hero-rings" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="720" cy="450" r="300" fill="none" stroke="white" stroke-width="1"/>
+        <circle cx="720" cy="450" r="450" fill="none" stroke="white" stroke-width="1"/>
+        <circle cx="720" cy="450" r="600" fill="none" stroke="white" stroke-width="1"/>
+      </svg>
+
+      <!-- ── CITY SKYLINE — 3 parallax layers ── -->
+      <!-- Layer 1: Far background buildings (slowest parallax) -->
+      <svg class="city-layer city-far" id="cityFar"
+           viewBox="0 0 1440 420" preserveAspectRatio="xMidYMax meet"
+           xmlns="http://www.w3.org/2000/svg">
+        <!-- LEFT half (x < 720) -->
+        <g class="split-l">
+          <rect x="30"   y="120" width="48"  height="300" rx="2" fill="#4a5568"/>
+          <rect x="55"   y="80"  width="22"  height="340" rx="2" fill="#5a6a82"/>
+          <rect x="110"  y="150" width="60"  height="270" rx="2" fill="#3d4e62"/>
+          <rect x="150"  y="100" width="28"  height="320" rx="2" fill="#4f6070"/>
+          <rect x="200"  y="60"  width="52"  height="360" rx="2" fill="#566275"/>
+          <rect x="228"  y="40"  width="18"  height="380" rx="2" fill="#6b7d8f"/>
+          <rect x="270"  y="130" width="44"  height="290" rx="2" fill="#3e5060"/>
+          <rect x="330"  y="90"  width="36"  height="330" rx="2" fill="#4a5e72"/>
+          <rect x="380"  y="50"  width="56"  height="370" rx="2" fill="#536070"/>
+          <rect x="408"  y="20"  width="20"  height="400" rx="2" fill="#637585"/>
+          <rect x="450"  y="110" width="48"  height="310" rx="2" fill="#455868"/>
+          <rect x="510"  y="70"  width="32"  height="350" rx="2" fill="#506070"/>
+          <rect x="555"  y="140" width="60"  height="280" rx="2" fill="#3c4e5e"/>
+          <rect x="590"  y="30"  width="24"  height="390" rx="2" fill="#5e7082"/>
+          <rect x="630"  y="100" width="50"  height="320" rx="2" fill="#4a5c6e"/>
+          <rect x="695"  y="60"  width="40"  height="360" rx="2" fill="#536478"/>
+          <line x1="228" y1="40"  x2="228" y2="10"  stroke="#8fa0b0" stroke-width="2"/>
+          <line x1="408" y1="20"  x2="408" y2="0"   stroke="#8fa0b0" stroke-width="2"/>
+        </g>
+        <!-- RIGHT half (x >= 720) -->
+        <g class="split-r">
+          <rect x="750"  y="10"  width="30"  height="410" rx="2" fill="#627585"/>
+          <rect x="790"  y="90"  width="54"  height="330" rx="2" fill="#3e5062"/>
+          <rect x="855"  y="130" width="38"  height="290" rx="2" fill="#475a6a"/>
+          <rect x="905"  y="50"  width="46"  height="370" rx="2" fill="#566475"/>
+          <rect x="960"  y="80"  width="26"  height="340" rx="2" fill="#4c6070"/>
+          <rect x="1000" y="120" width="58"  height="300" rx="2" fill="#3d5060"/>
+          <rect x="1070" y="40"  width="34"  height="380" rx="2" fill="#5e7080"/>
+          <rect x="1115" y="100" width="48"  height="320" rx="2" fill="#486070"/>
+          <rect x="1175" y="60"  width="22"  height="360" rx="2" fill="#536575"/>
+          <rect x="1210" y="130" width="52"  height="290" rx="2" fill="#405262"/>
+          <rect x="1270" y="70"  width="36"  height="350" rx="2" fill="#4a5c6e"/>
+          <rect x="1320" y="20"  width="44"  height="400" rx="2" fill="#627585"/>
+          <rect x="1375" y="90"  width="28"  height="330" rx="2" fill="#3e5060"/>
+          <rect x="1415" y="150" width="50"  height="270" rx="2" fill="#455668"/>
+          <line x1="750"  y1="10"  x2="750"  y2="-10" stroke="#8fa0b0" stroke-width="2"/>
+          <line x1="1070" y1="40"  x2="1070" y2="10"  stroke="#8fa0b0" stroke-width="2"/>
+          <line x1="1320" y1="20"  x2="1320" y2="-5"  stroke="#8fa0b0" stroke-width="2"/>
+        </g>
+      </svg>
+
+      <!-- Layer 2: Mid buildings (medium parallax) -->
+      <svg class="city-layer city-mid" id="cityMid"
+           viewBox="0 0 1440 380" preserveAspectRatio="xMidYMax meet"
+           xmlns="http://www.w3.org/2000/svg">
+        <!-- LEFT half (x < 720) -->
+        <g class="split-l">
+          <rect x="0"    y="160" width="80"  height="220" rx="3" fill="#7a6050"/>
+          <rect x="70"   y="100" width="55"  height="280" rx="3" fill="#8a6e58"/>
+          <rect x="140"  y="180" width="90"  height="200" rx="3" fill="#6e5848"/>
+          <rect x="220"  y="120" width="65"  height="260" rx="3" fill="#836558"/>
+          <rect x="295"  y="70"  width="75"  height="310" rx="3" fill="#785c4a"/>
+          <rect x="295"  y="50"  width="55"  height="25"  rx="2" fill="#8c6e5a"/>
+          <rect x="305"  y="30"  width="35"  height="25"  rx="2" fill="#a07e68"/>
+          <rect x="380"  y="140" width="85"  height="240" rx="3" fill="#726048"/>
+          <rect x="475"  y="90"  width="60"  height="290" rx="3" fill="#80685a"/>
+          <rect x="545"  y="160" width="75"  height="220" rx="3" fill="#6a5848"/>
+          <rect x="630"  y="60"  width="80"  height="320" rx="3" fill="#7c6250"/>
+          <rect x="630"  y="40"  width="60"  height="24"  rx="2" fill="#927060"/>
+          <rect x="640"  y="18"  width="40"  height="24"  rx="2" fill="#a88070"/>
+          <line x1="317" y1="30"  x2="317" y2="5"   stroke="#c0a080" stroke-width="2.5"/>
+          <line x1="650" y1="18"  x2="650" y2="-8"  stroke="#c0a080" stroke-width="2.5"/>
+          <rect x="80"  y="115" width="8" height="6" rx="1" fill="#ffd580" opacity="0.5"/>
+          <rect x="95"  y="115" width="8" height="6" rx="1" fill="#ffd580" opacity="0.5"/>
+          <rect x="80"  y="128" width="8" height="6" rx="1" fill="#ffd580" opacity="0.3"/>
+          <rect x="95"  y="128" width="8" height="6" rx="1" fill="#ffd580" opacity="0.3"/>
+          <rect x="480" y="105" width="8" height="6" rx="1" fill="#ffd580" opacity="0.5"/>
+          <rect x="495" y="105" width="8" height="6" rx="1" fill="#ffd580" opacity="0.5"/>
+          <rect x="480" y="118" width="8" height="6" rx="1" fill="#ffd580" opacity="0.3"/>
+          <rect x="495" y="118" width="8" height="6" rx="1" fill="#ffd580" opacity="0.3"/>
+        </g>
+        <!-- RIGHT half (x >= 720) -->
+        <g class="split-r">
+          <rect x="720"  y="130" width="70"  height="250" rx="3" fill="#705848"/>
+          <rect x="800"  y="80"  width="65"  height="300" rx="3" fill="#7e6658"/>
+          <rect x="875"  y="150" width="85"  height="230" rx="3" fill="#6c5a4a"/>
+          <rect x="970"  y="100" width="72"  height="280" rx="3" fill="#7a6252"/>
+          <rect x="1050" y="60"  width="80"  height="320" rx="3" fill="#785e4c"/>
+          <rect x="1050" y="38"  width="60"  height="25"  rx="2" fill="#8c6e5c"/>
+          <rect x="1060" y="15"  width="40"  height="25"  rx="2" fill="#a07e6c"/>
+          <rect x="1140" y="130" width="75"  height="250" rx="3" fill="#72604a"/>
+          <rect x="1225" y="90"  width="68"  height="290" rx="3" fill="#806858"/>
+          <rect x="1303" y="160" width="90"  height="220" rx="3" fill="#6c5848"/>
+          <rect x="1400" y="110" width="70"  height="270" rx="3" fill="#7a6252"/>
+          <line x1="1070" y1="15" x2="1070" y2="-10" stroke="#c0a080" stroke-width="2.5"/>
+        </g>
+      </svg>
+
+      <!-- Layer 3: Foreground buildings (fastest parallax) -->
+      <svg class="city-layer city-near" id="cityNear"
+           viewBox="0 0 1440 320" preserveAspectRatio="xMidYMax meet"
+           xmlns="http://www.w3.org/2000/svg">
+        <!-- LEFT half (x < 665) -->
+        <g class="split-l">
+          <rect x="0"    y="120" width="140" height="200" rx="4" fill="#2a2e38"/>
+          <rect x="0"    y="90"  width="100" height="35"  rx="3" fill="#343848"/>
+          <rect x="150"  y="80"  width="110" height="240" rx="4" fill="#1e2230"/>
+          <rect x="270"  y="140" width="120" height="180" rx="4" fill="#252a36"/>
+          <rect x="400"  y="60"  width="130" height="260" rx="4" fill="#202432"/>
+          <rect x="400"  y="30"  width="90"  height="35"  rx="3" fill="#2c3040"/>
+          <rect x="540"  y="110" width="115" height="210" rx="4" fill="#1c2030"/>
+          <rect x="162" y="100" width="12" height="9" rx="1" fill="#ffd060" opacity="0.7"/>
+          <rect x="180" y="100" width="12" height="9" rx="1" fill="#ffe090" opacity="0.4"/>
+          <rect x="198" y="100" width="12" height="9" rx="1" fill="#ffd060" opacity="0.7"/>
+          <rect x="162" y="117" width="12" height="9" rx="1" fill="#ffe090" opacity="0.4"/>
+          <rect x="180" y="117" width="12" height="9" rx="1" fill="#ffd060" opacity="0.7"/>
+          <rect x="198" y="117" width="12" height="9" rx="1" fill="#ffd060" opacity="0.6"/>
+          <rect x="162" y="134" width="12" height="9" rx="1" fill="#ffd060" opacity="0.3"/>
+          <rect x="180" y="134" width="12" height="9" rx="1" fill="#ffe090" opacity="0.5"/>
+          <rect x="198" y="134" width="12" height="9" rx="1" fill="#ffd060" opacity="0.7"/>
+          <line x1="445" y1="30" x2="445" y2="0"  stroke="#ff6b00" stroke-width="3"/>
+        </g>
+        <!-- RIGHT half (x >= 665) -->
+        <g class="split-r">
+          <rect x="665"  y="50"  width="125" height="270" rx="4" fill="#222638"/>
+          <rect x="665"  y="18"  width="85"  height="38"  rx="3" fill="#2e3244"/>
+          <rect x="800"  y="130" width="110" height="190" rx="4" fill="#252934"/>
+          <rect x="920"  y="70"  width="130" height="250" rx="4" fill="#1e2232"/>
+          <rect x="920"  y="40"  width="90"  height="34"  rx="3" fill="#2a2e40"/>
+          <rect x="1060" y="110" width="120" height="210" rx="4" fill="#222838"/>
+          <rect x="1190" y="90"  width="115" height="230" rx="4" fill="#1c2030"/>
+          <rect x="1315" y="150" width="125" height="170" rx="4" fill="#202436"/>
+          <rect x="678" y="70"  width="14" height="10" rx="1" fill="#ffd060" opacity="0.7"/>
+          <rect x="698" y="70"  width="14" height="10" rx="1" fill="#ffe090" opacity="0.3"/>
+          <rect x="718" y="70"  width="14" height="10" rx="1" fill="#ffd060" opacity="0.8"/>
+          <rect x="738" y="70"  width="14" height="10" rx="1" fill="#ffd060" opacity="0.5"/>
+          <rect x="678" y="88"  width="14" height="10" rx="1" fill="#ffe090" opacity="0.4"/>
+          <rect x="698" y="88"  width="14" height="10" rx="1" fill="#ffd060" opacity="0.7"/>
+          <rect x="718" y="88"  width="14" height="10" rx="1" fill="#ffd060" opacity="0.3"/>
+          <rect x="738" y="88"  width="14" height="10" rx="1" fill="#ffe090" opacity="0.6"/>
+          <rect x="678" y="106" width="14" height="10" rx="1" fill="#ffd060" opacity="0.8"/>
+          <rect x="698" y="106" width="14" height="10" rx="1" fill="#ffd060" opacity="0.4"/>
+          <rect x="718" y="106" width="14" height="10" rx="1" fill="#ffe090" opacity="0.6"/>
+          <rect x="738" y="106" width="14" height="10" rx="1" fill="#ffd060" opacity="0.3"/>
+          <rect x="933" y="88"  width="13" height="9" rx="1" fill="#ffd060" opacity="0.6"/>
+          <rect x="952" y="88"  width="13" height="9" rx="1" fill="#ffe090" opacity="0.3"/>
+          <rect x="971" y="88"  width="13" height="9" rx="1" fill="#ffd060" opacity="0.7"/>
+          <rect x="990" y="88"  width="13" height="9" rx="1" fill="#ffd060" opacity="0.4"/>
+          <rect x="933" y="105" width="13" height="9" rx="1" fill="#ffe090" opacity="0.5"/>
+          <rect x="952" y="105" width="13" height="9" rx="1" fill="#ffd060" opacity="0.8"/>
+          <rect x="971" y="105" width="13" height="9" rx="1" fill="#ffd060" opacity="0.3"/>
+          <rect x="990" y="105" width="13" height="9" rx="1" fill="#ffe090" opacity="0.6"/>
+          <line x1="707" y1="18" x2="707" y2="-12" stroke="#ff6b00" stroke-width="3"/>
+          <line x1="965" y1="40" x2="965" y2="8"   stroke="#ff6b00" stroke-width="3"/>
+        </g>
+      </svg>
+
+      <!-- ── Hero text (above city) ── -->
+      <div class="hero-content">
+        <!-- heroBrand is rebuilt via JS to apply black colouring on '2' and 'TO' -->
+        <div class="hero-brand" id="heroBrand">
+          <span class="hero-c">C</span><span class="hero-two">2</span><span class="hero-c">C</span>
+        </div>
+        <p class="hero-tagline" id="heroTagline">Turning Code into Companies</p>
+      </div>
+
+      <!-- Scroll hint -->
+      <div class="hero-scroll-hint">
+        <span>Scroll</span>
+        <i class="fa fa-chevron-down"></i>
+      </div>
+
+    </div>
+  </section>
+  <!-- /HERO -->
+
+  <!-- ============================================================
+       SECTION 2 — ABOUT
+  ============================================================ -->
+  <section id="about" aria-label="About C2C">
+    <div class="container">
+      <div class="about-grid">
+
+        <!-- Left: Visual card -->
+        <div class="about-visual reveal">
+          <div class="about-card about-card-main">
+            <div class="big-icon"><i class="fa-solid fa-code"></i></div>
+            <h3>Code To Company</h3>
+            <p>We transform ideas into digital realities — from a single line of code to a fully functioning business product.</p>
+          </div>
+          <div class="about-badge badge-1">🚀 15+ Projects Delivered</div>
+          <div class="about-badge badge-2">⭐ 12+ Happy Clients</div>
+        </div>
+
+        <!-- Right: Text content -->
+        <div class="about-text">
+          <div class="section-label reveal">Who We Are</div>
+          <h2 class="section-title reveal reveal-delay-1">
+            We Build<br/>Digital<br/><span class="orange-text">Futures.</span>
+          </h2>
+          <p class="reveal reveal-delay-2">
+            C2C is a results-driven service company that bridges the gap between a raw idea and a fully operational digital product. We work closely with startups, entrepreneurs, and businesses to deliver software that truly performs.
+          </p>
+          <p class="reveal reveal-delay-3">
+            From elegant portfolio sites to enterprise-grade web apps, AI-powered systems and data-driven dashboards — if it runs on code, we build it.
+          </p>
+
+          <!-- Service pills -->
+          <div class="services-pills reveal reveal-delay-4">
+            <span class="pill">Custom Software</span>
+            <span class="pill">E-Commerce</span>
+            <span class="pill">Portfolio Sites</span>
+            <span class="pill">Web Development</span>
+            <span class="pill">AI / ML Solutions</span>
+            <span class="pill">Digital Marketing</span>
+            <span class="pill">Data Analytics</span>
+            <span class="pill">UI / UX Design</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- /ABOUT -->
+
+  <!-- ============================================================
+       SECTION 3 — STATS DASHBOARD
+  ============================================================ -->
+  <section id="stats" aria-label="Stats">
+    <div class="container">
+
+      <div class="stats-header reveal">
+        <div class="section-label center-label">By The Numbers</div>
+        <h2 class="section-title">Why Choose C2C</h2>
+        <p>Real numbers, real impact. Here's what we've built so far — and we're just getting started.</p>
+      </div>
+
+      <div class="dashboard-grid">
+
+        <!-- Card 1: Projects -->
+        <div class="dash-card reveal reveal-delay-1">
+          <div class="dash-icon"><i class="fa-solid fa-folder-open"></i></div>
+          <div class="dash-card-label">Projects Completed</div>
+          <div class="dash-number"><span class="counter" data-target="15">0</span><sup>+</sup></div>
+          <div class="dash-desc">Across web, mobile, AI, and e-commerce domains</div>
+          <div class="dash-bar"><div class="dash-bar-fill" data-width="78"></div></div>
+        </div>
+
+        <!-- Card 2: Clients -->
+        <div class="dash-card reveal reveal-delay-2">
+          <div class="dash-icon"><i class="fa-solid fa-face-smile"></i></div>
+          <div class="dash-card-label">Happy Customers</div>
+          <div class="dash-number"><span class="counter" data-target="12">0</span><sup>+</sup></div>
+          <div class="dash-desc">Satisfied clients who returned for more</div>
+          <div class="dash-bar"><div class="dash-bar-fill" data-width="65"></div></div>
+        </div>
+
+        <!-- Card 3: Web Dev -->
+        <div class="dash-card reveal reveal-delay-3">
+          <div class="dash-icon"><i class="fa-solid fa-globe"></i></div>
+          <div class="dash-card-label">Web Development</div>
+          <div class="dash-number"><span class="counter" data-target="10">0</span><sup>+</sup></div>
+          <div class="dash-desc">Full-stack websites shipped and live</div>
+          <div class="dash-bar"><div class="dash-bar-fill" data-width="85"></div></div>
+        </div>
+
+        <!-- Card 4: AI/ML -->
+        <div class="dash-card reveal reveal-delay-4">
+          <div class="dash-icon"><i class="fa-solid fa-brain"></i></div>
+          <div class="dash-card-label">AI / ML Solutions</div>
+          <div class="dash-number"><span class="counter" data-target="5">0</span><sup>+</sup></div>
+          <div class="dash-desc">Intelligent systems built and deployed</div>
+          <div class="dash-bar"><div class="dash-bar-fill" data-width="55"></div></div>
+        </div>
+
+        <!-- Wide excellence card -->
+        <div class="dash-card dash-card-wide reveal reveal-delay-5">
+          <div class="dash-icon large-icon"><i class="fa-solid fa-trophy"></i></div>
+          <div class="dash-card-wide-text">
+            <h3>Excellence in Web Dev &amp; AI/ML</h3>
+            <p>C2C specialises in combining modern web technologies with intelligent AI/ML systems to build products that don't just look great — they think, learn, and perform. Our dual expertise sets us apart.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- /STATS -->
+
+  <!-- ============================================================
+       SECTION 4 — 3D PROJECT SLIDER (auto-slide every 3.5s)
+  ============================================================ -->
+  <section id="works" aria-label="Our Best Works">
+    <div class="container">
+
+      <div class="works-header">
+        <div class="section-label center-label reveal">Portfolio</div>
+        <h2 class="section-title reveal reveal-delay-1">Our Best <span class="orange-text">Works</span></h2>
+        <p class="works-sub reveal reveal-delay-2">Click the side cards, use arrows, or watch it auto-slide.</p>
+      </div>
+
+      <!-- Auto-slide progress bar -->
+      <div class="auto-progress-wrap reveal reveal-delay-3">
+        <div class="auto-progress-bar" id="autoProgressBar"></div>
+      </div>
+
+      <!-- 3D Slider -->
+      <div class="slider-scene reveal reveal-delay-3">
+        <div class="slider-track" id="projTrack">
+
+          <!-- Card 1 -->
+          <div class="proj-card" data-index="0">
+            <div class="proj-img-wrap" style="background:linear-gradient(135deg,#1a0500,#3d1200)">
+              <video src="ecommerce_demo.mp4" autoplay loop muted playsinline
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></video>
+              <div class="proj-img-fallback">🛒</div>
+            </div>
+            <div class="proj-card-body">
+              <div class="proj-tag">E-Commerce</div>
+              <div class="proj-title">ShopFlow</div>
+              <div class="proj-desc">Full-stack online store with cart, payments &amp; admin dashboard.</div>
+              <div class="proj-tech"><span>React</span><span>Node.js</span><span>Stripe</span></div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="proj-card" data-index="1">
+            <div class="proj-img-wrap" style="background:linear-gradient(135deg,#0a0a1a,#1a1a3d)">
+              <video src="billing_demo.mp4" autoplay loop muted playsinline
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></video>
+              <div class="proj-img-fallback">🤖</div>
+            </div>
+            <div class="proj-card-body">
+              <div class="proj-tag">Billing Software</div>
+              <div class="proj-title">BillEasy</div>
+              <div class="proj-desc">Image-based billing with instant WhatsApp delivery &amp; nutrient info on every bill.</div>
+              <div class="proj-tech"><span>React</span><span>WhatsApp API</span><span>Node.js</span></div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="proj-card" data-index="2">
+            <div class="proj-img-wrap" style="background:linear-gradient(135deg,#001a0a,#003d1a)">
+              <video src="hotel_porfolio.mp4" autoplay loop muted playsinline
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></video>
+              <div class="proj-img-fallback">🎨</div>
+            </div>
+            <div class="proj-card-body">
+              <div class="proj-tag">Portfolio</div>
+              <div class="proj-title">CreativeHub</div>
+              <div class="proj-desc">Award-winning portfolio site with 3D effects and scroll animations.</div>
+              <div class="proj-tech"><span>HTML/CSS</span><span>GSAP</span><span>Three.js</span></div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="proj-card" data-index="3">
+            <div class="proj-img-wrap" style="background:linear-gradient(135deg,#1a0a00,#3d2200)">
+              <video src="tajtools_demo.mp4" autoplay loop muted playsinline
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></video>
+              <div class="proj-img-fallback">🛠️</div>
+            </div>
+            <div class="proj-card-body">
+              <div class="proj-tag">Web Development</div>
+              <div class="proj-title">TajTools</div>
+              <div class="proj-desc">Full-featured business website with product showcase, enquiry forms &amp; responsive UI.</div>
+              <div class="proj-tech"><span>HTML/CSS</span><span>JavaScript</span><span>PHP</span></div>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="proj-card" data-index="4">
+            <div class="proj-img-wrap" style="background:linear-gradient(135deg,#0a001a,#20003d)">
+              <video src="logistic_demo.mp4" autoplay loop muted playsinline
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></video>
+              <div class="proj-img-fallback">🚚</div>
+            </div>
+            <div class="proj-card-body">
+              <div class="proj-tag">Game / Web</div>
+              <div class="proj-title">LogiRun</div>
+              <div class="proj-desc">Dynamic logistics game &amp; event site — fully live, zero external database costs.</div>
+              <div class="proj-tech"><span>HTML/CSS/JS</span><span>LocalStorage</span><span>PWA</span></div>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="proj-card" data-index="5">
+            <div class="proj-img-wrap" style="background:linear-gradient(135deg,#1a1000,#3d2800)">
+              <video src="project6.mp4" autoplay loop muted playsinline
+                     onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"></video>
+              <div class="proj-img-fallback">⚡</div>
+            </div>
+            <div class="proj-card-body">
+              <div class="proj-tag">IoT / Safety</div>
+              <div class="proj-title">SparkShield</div>
+              <div class="proj-desc">Real-time electric line fault detection with automated safety cut-off.</div>
+              <div class="proj-tech"><span>ESP32</span><span>Node.js</span><span>WebSocket</span></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!-- /Slider -->
+
+      <!-- Controls -->
+      <div class="slider-controls">
+        <button class="sl-btn" id="projPrev" aria-label="Previous"><i class="fa fa-arrow-left"></i></button>
+        <div class="sl-dots" id="projDots"></div>
+        <button class="sl-btn" id="projNext" aria-label="Next"><i class="fa fa-arrow-right"></i></button>
+      </div>
+
+    </div>
+  </section>
+  <!-- /WORKS -->
+
+  <!-- ============================================================
+       SECTION 5 — CONTACT
+  ============================================================ -->
+  <section id="contact" aria-label="Contact C2C">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- Left: Info -->
+        <div>
+          <div class="section-label reveal">Get In Touch</div>
+          <h2 class="contact-heading reveal reveal-delay-1">
+            Let's Build<br/>Something<br/><span class="orange-text">Together.</span>
+          </h2>
+          <p class="contact-subtext reveal reveal-delay-2">
+            Have an idea or a project? Fill in the form and we'll get back to you to discuss how C2C can turn your vision into a product.
+          </p>
+
+          <div class="contact-detail reveal reveal-delay-3">
+            <i class="fa fa-map-marker-alt"></i>
+            <span>Chennai, Tamil Nadu, India</span>
+          </div>
+          <div class="contact-detail reveal reveal-delay-4">
+            <i class="fab fa-whatsapp"></i>
+            <span>Available on WhatsApp</span>
+          </div>
+          <div class="contact-detail reveal reveal-delay-5">
+            <i class="fab fa-instagram"></i>
+            <span>Follow us on Instagram</span>
+          </div>
+        </div>
+
+        <!-- Right: Form (no email shown) -->
+        <div class="contact-form reveal reveal-delay-2">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="cName">Your Name</label>
+              <input type="text" id="cName" placeholder="John Doe" />
+            </div>
+            <div class="form-group">
+              <label for="cEmail">Email Address</label>
+              <input type="email" id="cEmail" placeholder="you@email.com" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="cPhone">Phone Number</label>
+            <input type="tel" id="cPhone" placeholder="+91 00000 00000" />
+          </div>
+
+          <div class="form-group">
+            <label for="cReq">Project / Software Requirements</label>
+            <textarea id="cReq" placeholder="Tell us about your project — what you want to build, your goals, timeline, budget..."></textarea>
+          </div>
+
+          <button class="btn-send" id="sendBtn">
+            <i class="fa fa-paper-plane" id="sendIcon"></i>
+            <span id="sendLabel">Send Message</span>
+          </button>
+
+          <!-- Success message (hidden by default) -->
+          <div class="form-success" id="formSuccess">
+            <i class="fa fa-check-circle"></i> Message sent! We'll reach out soon.
+          </div>
+
+          <!-- Error message (hidden by default) -->
+          <div class="form-error" id="formError">
+            <i class="fa fa-exclamation-circle"></i> <span id="formErrorText">Something went wrong.</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- /CONTACT -->
+
+  <!-- ============================================================
+       SECTION 6 — FOOTER
+  ============================================================ -->
+  <footer>
+    <div class="footer-inner">
+
+      <div class="footer-brand">
+        <div class="footer-logo">C<span>2</span>C</div>
+        <div class="footer-tagline">Code To Company — Building Digital Futures</div>
+      </div>
+
+      <!-- Social icon links -->
+      <div class="footer-socials">
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/code_to_company?igsh=dDVwbXl1MDNmZGdm" target="_blank" rel="noopener noreferrer"
+           class="social-link social-insta" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+          <span class="social-tooltip">Instagram</span>
+        </a>
+
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/code-to-company-4b7380404?utm_source=share_via&utm_content=profile&utm_medium=member_ios" target="_blank" rel="noopener noreferrer"
+           class="social-link social-linkedin" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in"></i>
+          <span class="social-tooltip">LinkedIn</span>
+        </a>
+
+        <!-- WhatsApp -->
+        <a href="https://wa.me/8438755662" target="_blank" rel="noopener noreferrer"
+           class="social-link social-whatsapp" aria-label="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+          <span class="social-tooltip">WhatsApp</span>
+        </a>
+
+      </div>
+
+      <div class="footer-copy">
+        &copy; 2025 C2C — Code To Company. All rights reserved.
+        &nbsp;|&nbsp; Built with <span class="heart">♥</span> by C2C
+      </div>
+
+    </div>
+  </footer>
+  <!-- /FOOTER -->
+
+  <script src="script.js"></script>
+</body>
+</html>
