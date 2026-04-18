@@ -50,6 +50,9 @@ const nearR = cityNear.querySelector('.split-r');
 const START_SIZE = 22;   // vw — large C2C
 const END_SIZE   = 7.5;  // vw — compact "Code To Company"
 
+// Mobile-safe font size limits
+const isMobile = () => window.innerWidth <= 680;
+
 function lerp(a, b, t) {
   return a + (b - a) * t;
 }
@@ -77,8 +80,11 @@ function updateHero() {
   const scrollable = heroH - stickyH;
   const progress   = Math.min(Math.max(scrollY / scrollable, 0), 1);
 
-  // Font size morph
-  const fs = lerp(START_SIZE, END_SIZE, progress);
+  // Font size morph — use smaller vw range on mobile to prevent clipping
+  const mobile = isMobile();
+  const startFs = mobile ? 14 : START_SIZE;
+  const endFs   = mobile ? 7  : END_SIZE;
+  const fs = lerp(startFs, endFs, progress);
   heroBrand.style.fontSize = fs + 'vw';
 
   // Text content swap at 30%
@@ -113,7 +119,7 @@ function updateHero() {
 
 // Initialise
 renderC2C();
-heroBrand.style.fontSize = START_SIZE + 'vw';
+heroBrand.style.fontSize = (isMobile() ? 14 : START_SIZE) + 'vw';
 window.addEventListener('scroll', updateHero, { passive: true });
 
 /* ------------------------------------------------------------------

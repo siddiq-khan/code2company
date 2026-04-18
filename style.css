@@ -250,6 +250,13 @@ section {
   z-index: 3;
 }
 
+/* ── Mobile: bigger buildings ── */
+@media (max-width: 680px) {
+  .city-far  { height: 75%; }
+  .city-mid  { height: 68%; }
+  .city-near { height: 58%; }
+}
+
 .hero-content {
   position: relative;
   text-align: center;
@@ -1079,8 +1086,25 @@ footer {
 @media (max-width: 680px) {
   section { padding: 60px 16px; }
 
-  /* Hero text scaling */
-  .hero-brand { font-size: clamp(3rem, 18vw, 7rem) !important; white-space: normal !important; }
+  /* Hero text scaling — allow full text to be visible without clipping */
+  .hero-brand {
+    font-size: clamp(2rem, 12vw, 5rem) !important;
+    white-space: normal !important;
+    text-align: center;
+    line-height: 1.05 !important;
+    overflow: visible !important;
+    padding: 0 8px;
+  }
+
+  /* Hero content must not clip text */
+  .hero-content {
+    overflow: visible !important;
+    width: 100%;
+    padding: 0 12px;
+  }
+
+  /* Hero sticky must not clip */
+  .hero-sticky { overflow: visible; }
 
   /* Slider — hide outermost side cards */
   .proj-card[data-pos="prev2"],
